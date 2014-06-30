@@ -13,8 +13,11 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+% A slightly differente version of the cost function in computeCost.m
+% J = sum((X * theta - y)  .^2) / (2*m)
+% (both are vectorized and so the previous one would also work well here):
 
-
+J = (X*theta - y)' * (X*theta - y) / (2*m)
 
 
 % =========================================================================
