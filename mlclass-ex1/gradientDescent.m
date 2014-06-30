@@ -17,7 +17,19 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
-    theta = theta - alpha * sum(X * theta - y) / m
+    theta = theta - (alpha * (1/m) * ((X * theta) - y)' * X)'
+
+
+    % Here follows a non-vectorized version of gradient descent
+    % (it also works but it is much less nice):
+    %
+    %    x = X(:,2);
+    %    h = theta(1) + (theta(2)*x);
+    %
+    %    theta_zero = theta(1) - alpha * (1/m) * sum(h-y);
+    %    theta_one = theta(2) - alpha * (1/m) * sum((h - y) .* x);
+    %
+    %    theta = [theta_zero; theta_one];
 
     % ============================================================
 
