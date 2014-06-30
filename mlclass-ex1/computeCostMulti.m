@@ -17,7 +17,7 @@ J = 0;
 % J = sum((X * theta - y)  .^2) / (2*m)
 % (both are vectorized and so the previous one would also work well here):
 
-J = (X*theta - y)' * (X*theta - y) / (2*m)
+J = (X*theta - y)' * (X*theta - y) / (2*m);
 
 
 % =========================================================================
