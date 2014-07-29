@@ -62,6 +62,8 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% vectorized version looping over all training examples
+
 n_classes = length(unique(y));
 
 for i = 1:m
@@ -83,8 +85,23 @@ end
 
 J = (1/m) * J;
 
-
-
+% fully vectorized version (no need of looping for training examples)
+%
+% n_classes = length(unique(y))
+% Y = zeros(n_classes, m);
+% for i = 1:m
+%     Y(y(i), i) = 1;
+% endfor
+%
+% A1 = [ones(1, m); X'];
+% Z2 = Theta1*A1;
+% A2 = [ones(1, m); sigmoid(Z2)];
+% Z3 = Theta2*A2;
+% A3 = sigmoid(Z3);
+% h0 = A3;
+%
+% J = (1/m) * sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0)));
+%
 
 
 
