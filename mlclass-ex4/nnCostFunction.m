@@ -62,7 +62,26 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+n_classes = length(unique(y));
 
+for i = 1:m
+
+  output = zeros(n_classes,1);
+  output(y(i)) = 1;
+
+  a1 = [1 X(i,:)];
+  z2 = a1 * Theta1';
+  a2 = [1 sigmoid(z2)];
+  z3 = a2 * Theta2';
+
+  a3 = sigmoid(z3);
+  h0 = a3;
+
+  J = J + sum(-output.*log(h0)' - (ones(n_classes,1)-output).*log(ones(n_classes,1)-h0'));
+
+end
+
+J = (1/m) * J;
 
 
 
