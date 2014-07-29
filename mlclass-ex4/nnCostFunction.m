@@ -83,7 +83,7 @@ for i = 1:m
 
 end
 
-J = (1/m) * J;
+J = (1/m) * J + lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
 
 % fully vectorized version (no need of looping for training examples)
 %
@@ -100,7 +100,7 @@ J = (1/m) * J;
 % A3 = sigmoid(Z3);
 % h0 = A3;
 %
-% J = (1/m) * sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0)));
+% J = (1/m) * sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0))) + lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
 %
 
 
