@@ -66,6 +66,8 @@ Theta2_grad = zeros(size(Theta2));
 
 n_classes = length(unique(y));
 
+Delta = 0;
+
 for i = 1:m
 
   output = zeros(n_classes,1);
@@ -81,9 +83,19 @@ for i = 1:m
 
   J = J + sum(-output.*log(h0)' - (ones(n_classes,1)-output).*log(ones(n_classes,1)-h0'));
 
+  delta3 = a3 - output';
+  delta2 = (Theta2' * delta3')' .* [1 sigmoidGradient(z2)];
+
+  Theta2_grad = (Theta2_grad + delta3'*a2);
+  Theta1_grad = (Theta1_grad + delta2(2:end)'*a1);
+
 end
 
 J = (1/m) * J + lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
+
+Theta2_grad = Theta2_grad/m;
+Theta1_grad = Theta1_grad/m;
+
 
 % fully vectorized version (no need of looping for training examples)
 %
