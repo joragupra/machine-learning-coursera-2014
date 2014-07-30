@@ -93,9 +93,8 @@ end
 
 J = (1/m) * J + lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
 
-Theta2_grad = Theta2_grad/m;
-Theta1_grad = Theta1_grad/m;
-
+Theta2_grad = Theta2_grad/m + (lambda/m) * [zeros(size(Theta2, 1), 1), Theta2(:, 2:end)];
+Theta1_grad = Theta1_grad/m + (lambda/m) * [zeros(size(Theta1, 1), 1), Theta1(:, 2:end)];
 
 % fully vectorized version (no need of looping for training examples)
 %
@@ -114,18 +113,6 @@ Theta1_grad = Theta1_grad/m;
 %
 % J = (1/m) * sum(sum(-Y.*log(h0) - (1-Y).*log(1-h0))) + lambda/(2*m) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
 %
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 % -------------------------------------------------------------
