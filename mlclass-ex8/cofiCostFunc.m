@@ -47,9 +47,8 @@ Theta_grad = ((X * Theta' - Y) .* R)' * X;
 % Now adding regularization for cost function and gradients
 
 J = J + sum(sum(Theta .^2)) * (lambda / 2) + sum(sum(X .^2)) * (lambda / 2);
-
-
-
+X_grad = X_grad + lambda * X;
+Theta_grad = Theta_grad + lambda * Theta;
 
 % =============================================================
 
